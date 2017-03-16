@@ -7,7 +7,9 @@ $(document).ready(function() {
   type: 'GET',
   url: url,
   dataType: 'json',
-  headers: config.CLIENT_ID,
+  headers:{
+    'Client-ID': 'y2v1et51byje4zrtyp0bkjnu4qw3li'
+  },
   success: function (data) {
     console.log(data);
   },
