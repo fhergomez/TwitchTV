@@ -2,7 +2,7 @@ $(document).ready(function() {
 
  console.log('jQuery is ready');
 
- var url = 'https://api.twitch.tv/kraken/streams/freecodecamp';
+ var url = 'https://api.twitch.tv/kraken/users/freecodecamp/follows/channels/';
  $.ajax ({
   type: 'GET',
   url: url,
@@ -12,7 +12,7 @@ $(document).ready(function() {
   },
   success: function (data) {
     console.log(data);
-    $('.logo').html('<a href="' + data.follows[0].channel.url + '" target="_blank">' + data.follows[0].channel.name + '</a>');
+    $('.logo').html('<a href="' + data.follows[0].channel.url + '" target="_">' + data.follows[0].channel.name + '</a>');
   },
   error: function (errorMessage) {
     console.log(errorMessage);
