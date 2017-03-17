@@ -1,9 +1,33 @@
 * {
   margin: auto;
-  padding: auto;
 }
 
 body {
   background-color: #add140;
   color: #FFF;
+}
+
+.content {
+  background-color: #447aed;
+  margin: auto;
+  max-width: 600px;
+  color: #FFF;
+}
+
+.logo {
+  color: #FFF;
+}
+
+.navBar {
+  background-color: #447aed;
+  max-width: 600px;
+}
+
+a, a:focus, a:hover ,a:visited {
+  color: #FFF;
+  text-decoration: none;
+}
+
+li.active, li.active>a:hover, li.active>a:visited, li.active>a:focus {
+  background-color: #f4921a;
 }
