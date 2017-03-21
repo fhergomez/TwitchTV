@@ -53,7 +53,8 @@ $(document).ready(function() {
           var name = data2.display_name;
           console.log(name);
           var logo = data2.logo;
-          $('#output').prepend('<li><img class="logo" target="_blank" src ="' + logo + '"/></li>');
+          var name = data2.name;
+          $('#output').prepend('<li><img class="logo" target="_blank" src ="' + logo + '"/><a class="name" href="https://www.twitch.tv/' + name + '">' + name + '</a></li>');
           console.log(logo);
         },
         error: function (errorMessage2) {
