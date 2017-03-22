@@ -13,9 +13,17 @@ body {
 }
 
 img.logo {
+  border-radius: 25%;
   width: 75px;
   height: 75px;
   margin: 20px 10px;
+}
+
+.name > h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 300px;
+  display: block;
 }
 
 ul#output {
