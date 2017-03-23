@@ -54,7 +54,7 @@ $(document).ready(function() {
           console.log(name);
           var logo = data2.logo;
           var name = data2.name;
-          $('#output').prepend('<li><img class="logo" target="_blank" src ="' + logo + '"/><a class="name" href="https://www.twitch.tv/' + name + '"><h3>' + name + '</h3></a></li>');
+          $('#output').prepend('<div class="channels jumbotron"><img class="logo" src ="' + logo + '"/><a href="https://www.twitch.tv/' + name + '" target="_blank"><h3 id="name">' + name + '</h3></a></div>');
           console.log(logo);
         },
         error: function (errorMessage2) {
