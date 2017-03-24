@@ -45,6 +45,7 @@ ul {
 
 .channels {
   border-radius: 25px;
+  position: relative;
 }
 
 .navBar {

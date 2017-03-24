@@ -4,7 +4,7 @@ $(document).ready(function() {
 
  var url = 'https://wind-bow.gomix.me/twitch-api/';
  var streams = 'streams/';
- var channels = ["freecodecamp", "nintendo", "food", "bobross"];
+ var channels = ["freecodecamp", "nintendo", "food", "bobross", "imaqtpie"];
  var users = 'users/';
  var channel;
 
@@ -18,19 +18,20 @@ $(document).ready(function() {
         type: 'GET',
         headers:{
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Client-ID": 'w4phosouw8u1vbu5jtcm5jdbdpamsm7rdvmz69v8wjuij93w7yh4mjs1modf'
         },
         dataType: 'jsonp',
         url: url + streams + channel,
         success: function (data1) {
           stream = data1.stream;
-          console.log(data1);
-          console.log(stream);
+          console.log("This is data1: " + data1);
+          console.log("This is the stream status: " + stream);
 
           if (stream != null) {
             status = "Currently Online";
             $("#status").innerHTML = status;
-          } else if (stream = null) {
+          } else if (stream === null) {
             status = "Currently Offline";
             $("#status").innerHTML = status;
           }
@@ -54,7 +55,7 @@ $(document).ready(function() {
           console.log(name);
           var logo = data2.logo;
           var name = data2.name;
-          $('#output').prepend('<div class="channels jumbotron"><img class="logo" src ="' + logo + '"/><a href="https://www.twitch.tv/' + name + '" target="_blank"><h3 id="name">' + name + '</h3></a></div>');
+          $('#output').prepend('<div class="channels jumbotron"><img class="logo" src ="' + logo + '"/><a href="https://www.twitch.tv/' + name + '" target="_blank"><h3 id="name">' + name + '</h3></a><p id="status">' + status + '</p></div>');
           console.log(logo);
         },
         error: function (errorMessage2) {
