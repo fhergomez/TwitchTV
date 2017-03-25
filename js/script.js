@@ -8,6 +8,7 @@ $(document).ready(function() {
  var users = 'users/';
  var channel;
  var status;
+ var stream;
 
  function onLoad() {
    for (var i = 0;i < channels.length;i++) {
@@ -24,18 +25,11 @@ $(document).ready(function() {
         dataType: 'jsonp',
         url: url + streams + channel,
         success: function (data1) {
-          var stream = data1.stream;
+          stream = data1.stream;
           // streamName = data1.stream.channel.display_name;
           console.log("This is data1: ", data1);
-          // console.log("This is the stream status: ", stream);
+          console.log("This is the stream status: ", stream);
           // console.log("This is the stream name live ", streamName);
-          if (stream == null) {
-            status = "Currently offline";
-            $("#status").innerHTML = status;
-          } else {
-            status = "Currently Online";
-            $("#status").innerHTML = status;
-          }
         },
         error: function (errorMessage1) {
           console.log(errorMessage1);
@@ -56,6 +50,13 @@ $(document).ready(function() {
           // console.log(name);
           var logo = data2.logo;
           var name = data2.name;
+          if (stream == null) {
+            status = "Currently offline";
+            $('#status').innerHTML = status;
+          } else if (stream !== null) {
+            status = "Currently Online";
+            $('#status').innerHTML = status;
+          }
           $('#output').prepend('<div class="channels jumbotron"><img class="logo" src ="' + logo + '"/><a href="https://www.twitch.tv/' + name + '" target="_blank"><h3 id="name">' + name + '</h3></a><p id="status">' + status + '</p></div>');
           // console.log(logo);
         },
