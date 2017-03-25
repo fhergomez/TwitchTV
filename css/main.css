@@ -13,25 +13,39 @@ body {
 }
 
 img.logo {
+  border-radius: 25%;
   width: 75px;
   height: 75px;
   margin: 20px 10px;
 }
 
-ul#output {
+#name {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+li#output {
   padding-left: 0px;
   margin-left: -5px;
 }
 
-ul#output li {
-  list-style-type: none;
+li#output > div{
   margin: 5px;
   padding: 1px 5px 5px 10px;
-  border-radius: 5px;
   font-size: 1.2em;
   font-family: 'Montserrat', Helvetica;
   color: #000;
   background-color: #008080;
+}
+
+ul {
+  padding: 0px;
+  list-style-type: none;
+}
+
+.channels {
+  border-radius: 25px;
+  position: relative;
 }
 
 .navBar {
