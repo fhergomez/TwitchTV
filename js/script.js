@@ -1,71 +1,74 @@
 $(document).ready(function() {
 
- console.log('jQuery is ready');
+  console.log('jQuery is ready');
 
- var url = 'https://wind-bow.gomix.me/twitch-api/';
- var streams = 'streams/';
- var channels = ["freecodecamp", "nintendo", "food", "bobross", "imaqtpie"];
- var users = 'users/';
- var channel;
- var status;
- var stream;
+  var url = 'https://wind-bow.gomix.me/twitch-api/';
+  var streams = 'streams/';
 
- function onLoad() {
-   for (var i = 0;i < channels.length;i++) {
-    channel = channels[i];
-    // console.log(channel);
+  // This is declaring the list of users
+  var twitchChannels = ["freecodecamp", "nintendo", "food", "bobross", "imaqtpie"];
+
+  for (var i = 0;i < twitchChannels.length;i++) {
+    status(twitchChannels[i]);
+  }
 
 
-     $.ajax ({
-        type: 'GET',
-        headers:{
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        dataType: 'jsonp',
-        url: url + streams + channel,
-        success: function (data1) {
-          stream = data1.stream;
-          // streamName = data1.stream.channel.display_name;
-          console.log("This is data1: ", data1);
-          console.log("This is the stream status: ", stream);
-          // console.log("This is the stream name live ", streamName);
-        },
-        error: function (errorMessage1) {
-          console.log(errorMessage1);
+  function status(user) {
+    $.ajax({
+      type: 'GET',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      dataType: 'jsonp',
+      url: url + '/channels/' + user + '?callback=?',
+      success: function (data) {
+        if (data['status'] == '404') {
+          $("#invalid").html('<hr>' + user);
+        } else {
+          var channels = data;
+          details(user, channels);
         }
-     });
+      },
+      error: function (errorMessage1) {
+        console.log(errorMessage1);
+      }
+    });
+  }
 
-     $.ajax ({
-        type: 'GET',
-        headers:{
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        dataType: 'jsonp',
-        url: url + users + channel,
-        success: function (data2) {
-          // console.log("This is data2: ", data2);
-          var name = data2.display_name;
-          // console.log(name);
-          var logo = data2.logo;
-          var name = data2.name;
-          if (stream == null) {
-            status = "Currently offline";
-            $('#status').innerHTML = status;
-          } else if (stream !== null) {
-            status = "Currently Online";
-            $('#status').innerHTML = status;
-          }
-          $('#output').prepend('<div class="channels jumbotron"><img class="logo" src ="' + logo + '"/><a href="https://www.twitch.tv/' + name + '" target="_blank"><h3 id="name">' + name + '</h3></a><p id="status">' + status + '</p></div>');
-          // console.log(logo);
-        },
-        error: function (errorMessage2) {
-          console.log(errorMessage2);
+  function details (user, channels) {
+    console.log(channels);
+    $.ajax({
+      type: 'GET',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      dataType: 'jsonp',
+      url: url + streams + user + '?callback=?',
+      success: function (data) {
+        console.log('this is the stream data: ', data);
+        if (data.stream == null) {
+          var status = "offline";
+        } else {
+          var status = "online";
         }
-      });
-    }
-  };
+        logo = channels.logo;
+        console.log('this is the logo: ', logo);
+        getHTML(user, status, logo, channels['status'], channels['url']);
+      },
+      error: function (errorMessage2) {
+        console.log(errorMessage2);
+      }
+    });
+  }; // end of function details
 
-  onLoad();
-});
+  function getHTML (user, status, logo, statusblurb, userURL) {
+    console.log(status);
+
+    var html = '<div class="channels jumbotron"><img class="logo" src ="' + logo + '"/><a href="https://www.twitch.tv/' + userURL + '" target="_blank"><h3 id="name">' + user + '</h3></a><p id="status">' + status + '</p></div>';
+    console.log(logo);
+    $('#output').append(html);
+  }; // end of function getHTML
+
+}); // end of jQuery
