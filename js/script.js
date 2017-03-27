@@ -6,7 +6,7 @@ $(document).ready(function() {
   var streams = 'streams/';
 
   // This is declaring the list of users
-  var twitchChannels = ["freecodecamp", "nintendo", "food", "bobross", "imaqtpie"];
+  var twitchChannels = ["freecodecamp", "nintendo", "food", "bobross", "RobotCaleb", "noobs2ninjas", "habathcx"];
 
   for (var i = 0;i < twitchChannels.length;i++) {
     status(twitchChannels[i]);
@@ -62,11 +62,11 @@ $(document).ready(function() {
   function getHTML (user, status, logo, statusblurb, userURL) {
     // console.log(status);
     if (stream == null) {
-          var offlineBtn = '<button type="button" class="btn btn-danger">offline</button>';
-          $('#output').append('<div class="channels media"><div class="media-left"><img class="logo media-body" src ="' + logo + '"/></div><div id="name" class="media-body"><a href="https://www.twitch.tv/' + userURL + '" target="_blank"><h3>' + user.toUpperCase() + '</h3></a><div class="button">' + offlineBtn + '</div></div></div>');
+          var offlineBtn = '<button type="button" class="btn btn-danger offlineBtn">offline</button>';
+          $('#output').append('<div class="channels media"><div class="media-left"><img class="logo media-body" src ="' + logo + '"/></div><div id="name" class="media-body"><h3>' + user.toUpperCase() + '</h3><p>' + statusblurb + '</p></div><div class="button">' + offlineBtn + '</div>');
         } else {
-          var onlineBtn = '<button type="button" class="btn btn-success">online</button>';
-          $('#output').append('<div class="channels media"><div class="media-left"><img class="logo media-body" src ="' + logo + '"/></div><div id="name" class="media-body"><a href="https://www.twitch.tv/' + userURL + '" target="_blank"><h3>' + user.toUpperCase() + '</h3></a><div class="button">' + onlineBtn + '</div></div></div>');
+          var onlineBtn = '<button type="button" class="btn btn-success onlineBtn">online</button>';
+          $('#output').append('<div class="channels media"><div class="media-left"><img class="logo media-body" src ="' + logo + '"/></div><div id="name" class="media-body"><h3>' + user.toUpperCase() + '</h3><p>' + statusblurb + '</p></div><div class="button"><a href="' + userURL + '" target="_blank">' + onlineBtn + '</a></div>');
         }
   }; // end of function getHTML
 
