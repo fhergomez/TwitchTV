@@ -48,13 +48,9 @@ $(document).ready(function() {
       url: url + streams + user + '?callback=?',
       success: function (data) {
         console.log('this is the stream data: ', data);
-        if (data.stream == null) {
-          var status = "offline";
-        } else {
-          var status = "online";
-        }
+        stream = data.stream;
         logo = channels.logo;
-        console.log('this is the logo: ', logo);
+        // console.log('this is the logo: ', logo);
         getHTML(user, status, logo, channels['status'], channels['url']);
       },
       error: function (errorMessage2) {
@@ -64,11 +60,14 @@ $(document).ready(function() {
   }; // end of function details
 
   function getHTML (user, status, logo, statusblurb, userURL) {
-    console.log(status);
-
-    var html = '<div class="channels jumbotron"><img class="logo" src ="' + logo + '"/><a href="https://www.twitch.tv/' + userURL + '" target="_blank"><h3 id="name">' + user + '</h3></a><p id="status">' + status + '</p></div>';
-    console.log(logo);
-    $('#output').append(html);
+    // console.log(status);
+    if (stream == null) {
+          var offlineBtn = '<button type="button" class="btn btn-danger">offline</button>';
+          $('#output').append('<div class="channels media"><div class="media-left"><img class="logo media-body" src ="' + logo + '"/></div><div id="name" class="media-body"><a href="https://www.twitch.tv/' + userURL + '" target="_blank"><h3>' + user.toUpperCase() + '</h3></a><div class="button">' + offlineBtn + '</div></div></div>');
+        } else {
+          var onlineBtn = '<button type="button" class="btn btn-success">online</button>';
+          $('#output').append('<div class="channels media"><div class="media-left"><img class="logo media-body" src ="' + logo + '"/></div><div id="name" class="media-body"><a href="https://www.twitch.tv/' + userURL + '" target="_blank"><h3>' + user.toUpperCase() + '</h3></a><div class="button">' + onlineBtn + '</div></div></div>');
+        }
   }; // end of function getHTML
 
 }); // end of jQuery

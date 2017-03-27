@@ -12,6 +12,11 @@ body {
   max-width: 600px;
 }
 
+.button {
+  float: right;
+  margin: -15px 15px;
+}
+
 img.logo {
   border-radius: 25%;
   width: 75px;
