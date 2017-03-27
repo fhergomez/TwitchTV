@@ -17,6 +17,20 @@ body {
   margin: -15px 15px;
 }
 
+.button > .offlineBtn, .button > a > .onlineBtn {
+  margin-top: -90px;
+  padding: 5px;
+}
+
+.button > .offlineBtn {
+  cursor: not-allowed;
+  background-color: #ce0c0c;
+}
+
+.button > a > .onlineBtn {
+  background-color: #299b06;
+}
+
 img.logo {
   border-radius: 25%;
   width: 75px;
@@ -27,6 +41,7 @@ img.logo {
 #name {
   margin-top: 0px;
   margin-bottom: 0px;
+  width: 350px;
 }
 
 li#output {
@@ -37,10 +52,11 @@ li#output {
 li#output > div{
   margin: 5px;
   padding: 1px 5px 5px 10px;
-  font-size: 1.2em;
+  font-size: 1em;
   font-family: 'Montserrat', Helvetica;
   color: #000;
   background-color: #008080;
+  min-height: 125px;
 }
 
 ul {
@@ -56,6 +72,10 @@ ul {
 .navBar {
   background-color: #008080;
   max-width: 600px;
+}
+
+h3 {
+  color: #fff;
 }
 
 a, a:focus, a:hover ,a:visited {
